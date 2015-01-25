@@ -14,17 +14,17 @@ function (Class, Directions) {
 		},
 		
 		getObject: function(id) {
-			return objects[id + ''];
+			return this.objects[id + ''];
 		},
 		
-		getObjectAt: function(row, cow) {
+		getObjectAt: function(row, col) {
 			var id = this.board[row + ',' + col];
-			return objects[id];
+			return this.objects[id];
 		},
 		
 		addObject: function(boardObject) {
 			var state = boardObject.state;
-			this.board[state.y + ',' +  state.x] = boardObject.id;
+			this.board[state.col + ',' +  state.row] = boardObject.id;
 			this.objects[boardObject.id + ''] = boardObject;
 		},
 		
@@ -35,7 +35,7 @@ function (Class, Directions) {
 				return undefined;
 			}
 			
-			this.board[boardObject.y + ',' + boardObject.x] = undefined;
+			this.board[boardObject.col + ',' + boardObject.row] = undefined;
 			this.objects[id + ''] = undefined;
 			return boardObject;
 		},
@@ -67,12 +67,12 @@ function (Class, Directions) {
 			
 			for (var key in this.objects) {
 				var current = this.objects[key];
-				if(xMin <= current.x 
-					&& xMax >= current.x
-					&& yMin <= current.y
-					&& yMax >= current.y) {
-						var currentDistance = sqrt((current.x - col) ^ 2) 
-						+ sqrt((current.y - row) ^ 2);
+				if(xMin <= current.row 
+					&& xMax >= current.row
+					&& yMin <= current.col
+					&& yMax >= current.col) {
+						var currentDistance = sqrt((current.row - col) ^ 2) 
+						+ sqrt((current.col - row) ^ 2);
 						
 						near[currentDistance + ''].push(current);
 					}
@@ -96,21 +96,21 @@ function (Class, Directions) {
 				var current = this.objects[key];
 				
 				if(direction == Directions.NORTH 
-					&& current.y <= row 
-					&& current.y >= row - distance) {
-						near[(row - current.y) + ''].push(current);
+					&& current.col <= row 
+					&& current.col >= row - distance) {
+						near[(row - current.col) + ''].push(current);
 				} else if(direction == Directions.SOUTH 
-					&& current.y >= row 
-					&& current.y <= row + distance) {
-						near[(current.y - row) + ''].push(current);
+					&& current.col >= row 
+					&& current.col <= row + distance) {
+						near[(current.col - row) + ''].push(current);
 				} else if(direction == Directions.WEST 
-					&& current.x <= col 
-					&& current.x >= col - distance) {
-						near[(col - current.x) + ''].push(current);
+					&& current.row <= col 
+					&& current.row >= col - distance) {
+						near[(col - current.row) + ''].push(current);
 				} else if(direction == Directions.EAST 
-					&& current.x >= col 
-					&& current.x <= col + distance) {
-						near[(current.x - col) + ''].push(current);
+					&& current.row >= col 
+					&& current.row <= col + distance) {
+						near[(current.row - col) + ''].push(current);
 				} 
 			}
 			
@@ -120,7 +120,7 @@ function (Class, Directions) {
 				var inSquare = near[kay];
 				var visible = [];
 				var stopLineOfSight = false;
-				for(var j = 0; j < inSquare.length, j++) {
+				for(var j = 0; j < inSquare.length; j++) {
 					if (inSquare[j].isLineOfSightBlocking && stopLineOfSight) {
 						visible.push(inSquare[j]);
 					} else if (inSquare[j].isLineOfSightBlocking) {
@@ -139,7 +139,7 @@ function (Class, Directions) {
 			}
 			
 			return priorityQueue;
-		}
+		},
 		
 		doStep: function(gameState) {
 			var currentState = gameState;

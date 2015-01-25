@@ -3,10 +3,11 @@
  */
 define(
 [
+    'jquery',
     'lib/Class',
     'app/model/Directions'
 ],
-function (Class, Directions) {
+function ($, Class, Directions) {
     var BoardObject = Class.extend({
 		init: function(id, currentState) {
 			this.id = id;
@@ -23,7 +24,7 @@ function (Class, Directions) {
 		},
 		
 		clone: function() {
-			return new BoardObject(this.id, this.currentState.clone());
+			return new BoardObject(this.id, $.extend({}, this.currentState));
 		},
 		
 		// true if this object blocks line of sight and false otherwise
