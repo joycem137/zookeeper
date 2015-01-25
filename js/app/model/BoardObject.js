@@ -9,11 +9,11 @@ function (Class) {
     var BoardObject = Class.extend({
 		init: function(id, currentState) {
 			this.id = id;
-			this._currentState = currentState;
-		},
-	    // returns the current facing of this object
-		get currentState() {
-			return this._currentState;
+			this.currentState = currentState || {
+                row: 8,
+                col: 4,
+                facing: Directions.NORTH
+            };
 		},
 
 		// returns a new game state based on the object's behavior
@@ -32,7 +32,9 @@ function (Class) {
 		// the qualitative properties of this object.
 		types: [],
 		// the unique name of this type of object 
-		name: "empty"
+		name: "empty",
+
+        image: 'img/genericObject.jpg'
     });
 	
 	return BoardObject;

@@ -32,16 +32,20 @@ requirejs.config({
 require(
 [
     'jquery',
+    'app/model/BoardObject',
     'app/ui/BoardController',
     'simpleAudio',
     'log', // Update the log functions.
     'app/util/polyfills'
 ],
-function($, BoardController, simpleAudio) {
+function($, BoardObject, BoardController, simpleAudio) {
     $(document).ready(function() {
         var body = $('body');
 
-        var board = new BoardController();
+        var testObject = new BoardObject(1);
+
+        var board = new BoardController(testObject);
         board.create().appendTo(body);
+        board.render();
     });
 });

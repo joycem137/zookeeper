@@ -4,6 +4,7 @@ head, body {
 }
 
 #board {
+    position: absolute;
     height: 700px;
     width: 700px;
 }
@@ -12,3 +13,14 @@ head, body {
     height: 700px;
     width: 700px;
 }
+
+.boardobject {
+    position: absolute;
+    height: 50px;
+    width: 50px;
+}
+
+.background {
+    position: relative;
+}
+
