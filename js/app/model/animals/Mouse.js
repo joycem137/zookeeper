@@ -9,7 +9,7 @@ define(
 function ($, BoardObject) {
  	var Mouse = BoardObject.extend({
 		init: function(id, currentState) {
-			this._super(id, currentState)
+			this._super(id, currentState);
 		},
 		
 		doStep: function(gameState) {
@@ -25,4 +25,4 @@ function ($, BoardObject) {
 		image: 'img/mouse.jpg'
 	});
 	return Mouse;	
-}
+});
