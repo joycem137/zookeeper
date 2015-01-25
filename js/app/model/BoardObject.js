@@ -10,15 +10,11 @@ function (Class, Directions) {
     return Class.extend({
 		init: function(id, currentState) {
 			this.id = id;
-			this._currentState = currentState || {
-                row: 0,
-                col: 0,
+			this.currentState = currentState || {
+                row: 8,
+                col: 4,
                 facing: Directions.NORTH
             };
-		},
-	    // returns the current facing of this object
-		get currentState() {
-			return this._currentState;
 		},
 
 		// returns a new game state based on the object's behavior

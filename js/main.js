@@ -46,5 +46,6 @@ function($, BoardObject, BoardController, simpleAudio) {
 
         var board = new BoardController(testObject);
         board.create().appendTo(body);
+        board.render();
     });
 });
