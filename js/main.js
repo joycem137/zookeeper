@@ -46,6 +46,8 @@ function($, Board, Bush, BoardRenderer, Directions, AppSettings, simpleAudio) {
         var id = 0;
         var body = $('body');
 
+        body.append(('<img id="background" src="img/background.png" />'));
+
         var boardModel = new Board();
         var boardRenderer = new BoardRenderer(boardModel);
         var boardRendererDiv = boardRenderer.create();

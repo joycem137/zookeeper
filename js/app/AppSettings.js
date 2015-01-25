@@ -2,5 +2,5 @@
  * App Settings
  */
 define({
-    gridSize: 50
+    gridSize: 75
 });
