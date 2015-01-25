@@ -3,9 +3,10 @@
  */
 define(
 [
- 'lib/Class'
+    'lib/Class',
+    'app/model/Directions'
 ],
-function (Class) {
+function (Class, Directions) {
     var BoardObject = Class.extend({
 		init: function(id, currentState) {
 			this.id = id;
@@ -22,12 +23,12 @@ function (Class) {
 		},
 		
 		clone: function() {
-			return new BoardObject(this.id, this._currentState.clone());	
-		}
+			return new BoardObject(this.id, this.currentState.clone());
+		},
 		
 		// true if this object blocks line of sight and false otherwise
 		isLineOfSightBlocking: false,
-		// true if this object blocks movement and flase otherwise
+		// true if this object blocks movement and false otherwise
 		isMovementBlocking: false,		
 		// the qualitative properties of this object.
 		types: [],
