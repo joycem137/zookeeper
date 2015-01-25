@@ -12,7 +12,7 @@ function (Class) {
 			this._currentState = currentState;
 		},
 	    // returns the current facing of this object
-		state: get function() {
+		get currentState() {
 			return this._currentState;
 		},
 
