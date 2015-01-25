@@ -36,25 +36,32 @@ require(
     'app/model/BoardObject',
     'app/ui/BoardRenderer',
     'app/model/Directions',
+    'app/AppSettings',
     'simpleAudio',
     'log', // Update the log functions.
     'app/util/polyfills'
 ],
-function($, Board, BoardObject, BoardRenderer, Directions, simpleAudio) {
+function($, Board, BoardObject, BoardRenderer, Directions, AppSettings, simpleAudio) {
     $(document).ready(function() {
         var id = 0;
         var body = $('body');
 
         var boardModel = new Board();
         var boardRenderer = new BoardRenderer(boardModel);
-        boardRenderer.create().appendTo(body);
+        var boardRendererDiv = boardRenderer.create();
+        body.append(boardRendererDiv);
         boardRenderer.render();
 
-        $(document).click(function(mouseEvent) {
+        boardRendererDiv.click(function(mouseEvent) {
+            var gridSize = AppSettings.gridSize;
+
+            var row = Math.floor(mouseEvent.offsetY / gridSize);
+            var col = Math.floor(mouseEvent.offsetX / gridSize);
+
             boardModel.addObject(new BoardObject(id++, {
                 facing: Directions.NORTH,
-                row: 5,
-                col: 5
+                row: row,
+                col: col
             }));
             boardRenderer.render();
         });

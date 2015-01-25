@@ -3,10 +3,11 @@
  */
 define(
 [
-    'jquery'
+    'jquery',
+    'app/AppSettings'
 ],
-function ($) {
-    var gridSize = 50;
+function ($, AppSettings) {
+    var gridSize = AppSettings.gridSize;
 
     var animationProps = {
         duration: 1000,
