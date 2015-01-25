@@ -23,7 +23,7 @@ function (Class, Directions) {
 		},
 		
 		addObject: function(boardObject) {
-			var state = boardObject.state;
+			var state = boardObject.currentState;
 			this.board[state.col + ',' +  state.row] = boardObject.id;
 			this.objects[boardObject.id + ''] = boardObject;
 		},
@@ -91,7 +91,7 @@ function (Class, Directions) {
 			for (var i = 0; i <= distance; i++) {
 				near[i + ''] = [];
 			}
-			
+
 			for (var key in this.objects) {
 				var current = this.objects[key];
 				

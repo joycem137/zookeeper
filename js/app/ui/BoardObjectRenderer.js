@@ -28,6 +28,10 @@ function ($) {
             return topDiv;
         },
 
+        renderDeath: function() {
+            // TODO: Fade out or something.  Also flag this.
+        },
+
         render: function() {
             // We'll need to adjust facing and do animation here.
             var oldState = this._oldState;
