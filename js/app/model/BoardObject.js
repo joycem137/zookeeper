@@ -3,11 +3,10 @@
  */
 define(
 [
- 'lib/Class',
- 'app/model/Directions'
+ 'lib/Class'
 ],
-function (Class, Directions) {
-    return Class.extend({
+function (Class) {
+    var BoardObject = Class.extend({
 		init: function(id, currentState) {
 			this.id = id;
 			this._currentState = currentState;
@@ -22,6 +21,10 @@ function (Class, Directions) {
 			return gameState;
 		},
 		
+		clone: function() {
+			return new BoardObject(this.id, this._currentState.clone());	
+		}
+		
 		// true if this object blocks line of sight and false otherwise
 		isLineOfSightBlocking: false,
 		// true if this object blocks movement and flase otherwise
@@ -31,4 +34,6 @@ function (Class, Directions) {
 		// the unique name of this type of object 
 		name: "empty"
     });
+	
+	return BoardObject;
 });
