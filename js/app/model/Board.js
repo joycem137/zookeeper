@@ -17,6 +17,11 @@ function (Class, Directions) {
 		},
 		
 		addObject: function(boardObject) {
+<<<<<<< HEAD
+=======
+			var state = boardObject.currentState;
+			this.board[state.col + ',' +  state.row] = boardObject.id;
+>>>>>>> master
 			this.objects[boardObject.id + ''] = boardObject;
 		},
 		
@@ -71,8 +76,12 @@ function (Class, Directions) {
 			for (var i = 0; i <= distance; i++) {
 				near[i + ''] = [];
 			}
+<<<<<<< HEAD
 			
 			// search for objects in the given direction within the given distance, inclusive
+=======
+
+>>>>>>> master
 			for (var key in this.objects) {
 				var current = this.objects[key];
 				

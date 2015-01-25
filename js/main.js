@@ -32,32 +32,31 @@ requirejs.config({
 require(
 [
     'jquery',
+    'app/model/Board',
     'app/model/BoardObject',
-    'app/ui/BoardController',
+    'app/ui/BoardRenderer',
+    'app/model/Directions',
     'simpleAudio',
     'log', // Update the log functions.
     'app/util/polyfills'
 ],
-function($, BoardObject, BoardController, simpleAudio) {
+function($, Board, BoardObject, BoardRenderer, Directions, simpleAudio) {
     $(document).ready(function() {
+        var id = 0;
         var body = $('body');
 
-        var testObject = new BoardObject(1);
+        var boardModel = new Board();
+        var boardRenderer = new BoardRenderer(boardModel);
+        boardRenderer.create().appendTo(body);
+        boardRenderer.render();
 
-        var board = new BoardController(testObject);
-        board.create().appendTo(body);
-        board.render();
-
-        body.click(function() {
-            var oldFacing = testObject.currentState.facing;
-            var newFacing = oldFacing + 90;
-
-            testObject.currentState.row++;
-            testObject.currentState.col+=2;
-
-            testObject.currentState.facing = newFacing;
-
-            board.render();
+        $(document).click(function(mouseEvent) {
+            boardModel.addObject(new BoardObject(id++, {
+                facing: Directions.NORTH,
+                row: 5,
+                col: 5
+            }));
+            boardRenderer.render();
         });
     });
 });
