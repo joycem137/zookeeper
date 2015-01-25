@@ -23,19 +23,19 @@ function ($, ItemSelector, Bush, Mouse, Cheese, AppSettings, Directions) {
             bush: Bush
         };
 
-        this._selectedItem = 'mouse';
+        this._selectedItem = Mouse;
 
-        var imageArray = [];
+        var itemSelectorDefinition = {};
 
         for (var name in this._itemMap) {
             var item = this._itemMap[name];
-            imageArray.push({
+            itemSelectorDefinition[name] = {
                 image: item.prototype.image,
-                name: name
-            });
+                item: item
+            };
         }
 
-        this._itemSelector = new ItemSelector(imageArray);
+        this._itemSelector = new ItemSelector(itemSelectorDefinition);
     };
 
     DesignController.prototype = {
@@ -43,10 +43,6 @@ function ($, ItemSelector, Bush, Mouse, Cheese, AppSettings, Directions) {
             var self = this;
             var itemSelectorDiv = this._itemSelector.create();
 
-            itemSelectorDiv.click(function(mouseEvent) {
-                var selectedItemDiv = mouseEvent.target;
-                self._selectedItem = selectedItemDiv.id;
-            });
             this._itemSelector.render();
 
             return itemSelectorDiv;
@@ -56,8 +52,13 @@ function ($, ItemSelector, Bush, Mouse, Cheese, AppSettings, Directions) {
             var boardModel = this._boardModel;
             var boardRenderer = this._boardRenderer;
             var self = this;
+
+            this._itemSelector.onMouseClick(function(item) {
+                self._selectedItem = item;
+            });
+
             boardRenderer.onMouseClick(function(row, col) {
-                var SelectedBoardObjectConstructor = self._itemMap[self._selectedItem];
+                var SelectedBoardObjectConstructor = self._selectedItem;
 
                 boardModel.addObject(new SelectedBoardObjectConstructor(self._id++, {
                     facing: Directions.NORTH,
