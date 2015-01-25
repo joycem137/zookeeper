@@ -17,7 +17,6 @@ function (Class, Directions) {
 		},
 		
 		addObject: function(boardObject) {
-			var state = boardObject.currentState;
 			this.objects[boardObject.id + ''] = boardObject;
 		},
 		
