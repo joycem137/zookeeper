@@ -34,14 +34,17 @@ require(
     'jquery',
     'app/model/Board',
     'app/model/scenery/Bush',
+    'app/model/animals/Mouse',
+    'app/model/tools/Cheese',
     'app/ui/BoardRenderer',
+    'app/ui/ItemSelector',
     'app/model/Directions',
     'app/AppSettings',
     'simpleAudio',
     'log', // Update the log functions.
     'app/util/polyfills'
 ],
-function($, Board, Bush, BoardRenderer, Directions, AppSettings, simpleAudio) {
+function($, Board, Bush, Mouse, Cheese, BoardRenderer, ItemSelector, Directions, AppSettings, simpleAudio) {
     $(document).ready(function() {
         var id = 0;
         var body = $('body');
@@ -54,13 +57,27 @@ function($, Board, Bush, BoardRenderer, Directions, AppSettings, simpleAudio) {
         body.append(boardRendererDiv);
         boardRenderer.render();
 
+        var itemSelector = new ItemSelector([
+            new Mouse(),
+            new Cheese(),
+            new Bush()
+        ]);
+
+        var itemSelectorDiv = itemSelector.create();
+        itemSelectorDiv.appendTo(body);
+
+        itemSelectorDiv.click(function(mouseEvent) {
+            console.log('Item selector clicked');
+        });
+        itemSelector.render();
+
         boardRendererDiv.click(function(mouseEvent) {
             var gridSize = AppSettings.gridSize;
 
             var row = Math.floor(mouseEvent.offsetY / gridSize);
             var col = Math.floor(mouseEvent.offsetX / gridSize);
 
-            boardModel.addObject(new Bush(id++, {
+            boardModel.addObject(new Cheese(id++, {
                 facing: Directions.NORTH,
                 row: row,
                 col: col
