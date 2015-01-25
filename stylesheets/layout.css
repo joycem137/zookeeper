@@ -1,0 +1,14 @@
+head, body {
+    color: #E3FF52;
+    font-family: sans-serif;
+}
+
+#board {
+    height: 700px;
+    width: 700px;
+}
+
+#boardBackground {
+    height: 700px;
+    width: 700px;
+}

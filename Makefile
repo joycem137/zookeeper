@@ -1,5 +1,5 @@
 # target is the final output file for your library
-RELEASE_TARGET=fedcom.js
+RELEASE_TARGET=app.js
 
 HTML_DIR = html
 INDEX_HTML = index.html
