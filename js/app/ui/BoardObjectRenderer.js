@@ -7,9 +7,15 @@ define(
 ],
 function ($) {
     var gridSize = 50;
+
+    var animationProps = {
+        duration: 1000,
+        easing: 'linear'
+    };
+
     var BoardObjectRenderer = function(boardObject) {
         this._boardObject = boardObject;
-        this._facing = 0;
+        this._oldState = $.extend({}, boardObject.currentState);
     };
 
     BoardObjectRenderer.prototype = {
@@ -24,13 +30,20 @@ function ($) {
 
         render: function() {
             // We'll need to adjust facing and do animation here.
-            var objectState = this._boardObject.currentState;
-            var y = objectState.row * gridSize;
-            var x = objectState.col * gridSize;
-            this._topDiv.css({ "top": y +'px', "left": x + "px" });
+            var oldState = this._oldState;
+            var oldX = oldState.col * gridSize;
+            var oldY = oldState.row * gridSize;
 
-            this._topDiv.animateRotate(objectState.facing, {duration: 1000}, this._facing);
-            this._facing = objectState.facing;
+            var newState = this._boardObject.currentState;
+            var newY = newState.row * gridSize;
+            var newX = newState.col * gridSize;
+
+            this._topDiv.animate({ "top": newY +'px', "left": newX + "px"});
+
+            // Animate the rotation
+            this._topDiv.animateRotate(newState.facing, animationProps, oldState.facing);
+
+            this._oldState = $.extend({}, newState);
         }
     };
 

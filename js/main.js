@@ -52,6 +52,9 @@ function($, BoardObject, BoardController, simpleAudio) {
             var oldFacing = testObject.currentState.facing;
             var newFacing = oldFacing + 90;
 
+            testObject.currentState.row++;
+            testObject.currentState.col+=2;
+
             testObject.currentState.facing = newFacing;
 
             board.render();
