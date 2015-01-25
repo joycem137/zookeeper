@@ -1,5 +1,5 @@
 /*
- * Directions
+ * Mouse
  */
 define(
 [
@@ -25,4 +25,4 @@ function ($, BoardObject) {
 		image: 'img/mouse.jpg'
 	});
 	return Mouse;	
-}
+});

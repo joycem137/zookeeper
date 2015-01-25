@@ -33,7 +33,7 @@ require(
 [
     'jquery',
     'app/model/Board',
-    'app/model/BoardObject',
+    'app/model/scenery/Bush',
     'app/ui/BoardRenderer',
     'app/model/Directions',
     'app/AppSettings',
@@ -41,7 +41,7 @@ require(
     'log', // Update the log functions.
     'app/util/polyfills'
 ],
-function($, Board, BoardObject, BoardRenderer, Directions, AppSettings, simpleAudio) {
+function($, Board, Bush, BoardRenderer, Directions, AppSettings, simpleAudio) {
     $(document).ready(function() {
         var id = 0;
         var body = $('body');
@@ -58,7 +58,7 @@ function($, Board, BoardObject, BoardRenderer, Directions, AppSettings, simpleAu
             var row = Math.floor(mouseEvent.offsetY / gridSize);
             var col = Math.floor(mouseEvent.offsetX / gridSize);
 
-            boardModel.addObject(new BoardObject(id++, {
+            boardModel.addObject(new Bush(id++, {
                 facing: Directions.NORTH,
                 row: row,
                 col: col
