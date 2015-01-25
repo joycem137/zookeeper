@@ -28,6 +28,11 @@ head, body {
     margin-bottom: 10px;
 }
 
+.itemSelectorObject .selected {
+    border:3px;
+    border-color: yellow;
+}
+
 .boardobject {
     position: absolute;
     height: 75px;

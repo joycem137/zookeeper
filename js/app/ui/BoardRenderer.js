@@ -4,17 +4,20 @@
 define(
 [
     'jquery',
-    'app/ui/BoardObjectRenderer'
+    'app/ui/BoardObjectRenderer',
+    'app/AppSettings'
 ],
-function ($, BoardObjectRenderer) {
+function ($, BoardObjectRenderer, AppSettings) {
     var BoardController = function(boardModel) {
         this._boardModel = boardModel;
         this._boardObjectRenderers = [];
         this._boardObjectIds = {};
+        this._clickHandler = function(row, col) {};
     };
 
     BoardController.prototype = {
         create: function() {
+            var self = this;
             var topDiv = $('<div id="board"></div>');
             this._topDiv = topDiv;
 
@@ -25,6 +28,15 @@ function ($, BoardObjectRenderer) {
                 boardObject = boardObjects[objectKey];
                 this._createObjectRenderer(boardObject);
             }
+
+            topDiv.click(function(mouseEvent) {
+                var gridSize = AppSettings.gridSize;
+
+                var row = Math.floor(mouseEvent.offsetY / gridSize);
+                var col = Math.floor(mouseEvent.offsetX / gridSize);
+
+                self._clickHandler(row, col);
+            });
 
             return topDiv;
         },
@@ -54,6 +66,10 @@ function ($, BoardObjectRenderer) {
             this._boardObjectRenderers.forEach(function(renderer) {
                 renderer.render();
             });
+        },
+
+        onMouseClick: function(clickHandler) {
+            this._clickHandler = clickHandler;
         },
 
         _createObjectRenderer: function(boardObject) {

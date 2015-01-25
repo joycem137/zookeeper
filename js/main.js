@@ -33,56 +33,26 @@ require(
 [
     'jquery',
     'app/model/Board',
-    'app/model/scenery/Bush',
-    'app/model/animals/Mouse',
-    'app/model/tools/Cheese',
     'app/ui/BoardRenderer',
-    'app/ui/ItemSelector',
+    'app/ui/DesignController',
     'app/model/Directions',
     'app/AppSettings',
     'simpleAudio',
     'log', // Update the log functions.
     'app/util/polyfills'
 ],
-function($, Board, Bush, Mouse, Cheese, BoardRenderer, ItemSelector, Directions, AppSettings, simpleAudio) {
+function($, Board, BoardRenderer, DesignController, Directions, AppSettings, simpleAudio) {
     $(document).ready(function() {
-        var id = 0;
         var body = $('body');
 
         body.append(('<img id="background" src="img/background.png" />'));
 
         var boardModel = new Board();
         var boardRenderer = new BoardRenderer(boardModel);
-        var boardRendererDiv = boardRenderer.create();
-        body.append(boardRendererDiv);
+        boardRenderer.create().appendTo(body);
+        var designController = new DesignController(boardModel, boardRenderer);
+        designController.create().appendTo(body);
+        designController.enable();
         boardRenderer.render();
-
-        var itemSelector = new ItemSelector([
-            new Mouse(),
-            new Cheese(),
-            new Bush()
-        ]);
-
-        var itemSelectorDiv = itemSelector.create();
-        itemSelectorDiv.appendTo(body);
-
-        itemSelectorDiv.click(function(mouseEvent) {
-            console.log('Item selector clicked');
-        });
-        itemSelector.render();
-
-        boardRendererDiv.click(function(mouseEvent) {
-            var gridSize = AppSettings.gridSize;
-
-            var row = Math.floor(mouseEvent.offsetY / gridSize);
-            var col = Math.floor(mouseEvent.offsetX / gridSize);
-
-            boardModel.addObject(new Cheese(id++, {
-                facing: Directions.NORTH,
-                row: row,
-                col: col
-            }));
-            boardRenderer.render();
-        });
     });
 });
