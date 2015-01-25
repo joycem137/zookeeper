@@ -25,6 +25,7 @@ head, body {
 .itemSelectorObject {
     height: 100px;
     width: 100px;
+    margin-bottom: 10px;
 }
 
 .boardobject {
@@ -35,5 +36,4 @@ head, body {
 
 .background {
     position: relative;
-    width: 100px;
 }
