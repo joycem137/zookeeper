@@ -9,6 +9,7 @@ function ($) {
     var gridSize = 50;
     var BoardObjectRenderer = function(boardObject) {
         this._boardObject = boardObject;
+        this._facing = 0;
     };
 
     BoardObjectRenderer.prototype = {
@@ -27,6 +28,9 @@ function ($) {
             var y = objectState.row * gridSize;
             var x = objectState.col * gridSize;
             this._topDiv.css({ "top": y +'px', "left": x + "px" });
+
+            this._topDiv.animateRotate(objectState.facing, {duration: 1000}, this._facing);
+            this._facing = objectState.facing;
         }
     };
 

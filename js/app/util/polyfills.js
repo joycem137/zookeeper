@@ -5,7 +5,8 @@
 define(
 [
     'app/util/polyfill/array',
-    'app/util/polyfill/string'
+    'app/util/polyfill/string',
+    'app/util/polyfill/animateRotate'
 ],
 function () {
     // Nothing to do.  Just pull in those files.
