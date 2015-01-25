@@ -10,10 +10,11 @@ define(
     'app/model/animals/Mouse',
     'app/model/animals/Elephant',
     'app/model/tools/Cheese',
+    'app/model/tools/Zookeeper',
     'app/AppSettings',
     'app/model/Directions'
 ],
-function ($, ItemSelector, Bush, Cage, Mouse, Elephant, Cheese, AppSettings, Directions) {
+function ($, ItemSelector, Bush, Cage, Mouse, Elephant, Cheese, Zookeeper, AppSettings, Directions) {
     var DesignController = function(boardModel, boardRenderer){
         this._boardModel = boardModel;
         this._boardRenderer = boardRenderer;
@@ -24,7 +25,8 @@ function ($, ItemSelector, Bush, Cage, Mouse, Elephant, Cheese, AppSettings, Dir
             elephant: Elephant,
             cheese: Cheese,
             bush: Bush,
-            cage: Cage
+            cage: Cage,
+            zookeeper: Zookeeper
         };
 
         this._selectedItem = Mouse;
