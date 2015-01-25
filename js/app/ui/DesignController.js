@@ -6,12 +6,14 @@ define(
     'jquery',
     'app/ui/ItemSelector',
     'app/model/scenery/Bush',
+    'app/model/scenery/Cage',
     'app/model/animals/Mouse',
+    'app/model/animals/Elephant',
     'app/model/tools/Cheese',
     'app/AppSettings',
     'app/model/Directions'
 ],
-function ($, ItemSelector, Bush, Mouse, Cheese, AppSettings, Directions) {
+function ($, ItemSelector, Bush, Cage, Mouse, Elephant, Cheese, AppSettings, Directions) {
     var DesignController = function(boardModel, boardRenderer){
         this._boardModel = boardModel;
         this._boardRenderer = boardRenderer;
@@ -19,8 +21,10 @@ function ($, ItemSelector, Bush, Mouse, Cheese, AppSettings, Directions) {
 
         this._itemMap = {
             mouse: Mouse,
+            elephant: Elephant,
             cheese: Cheese,
-            bush: Bush
+            bush: Bush,
+            cage: Cage
         };
 
         this._selectedItem = Mouse;
