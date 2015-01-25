@@ -37,7 +37,7 @@ function ($, BoardObjectRenderer) {
 
             // Remove stale renderers that are no longer around.
             this._boardObjectRenderers.forEach(function(renderer) {
-                var objectIsStillOnBoard = boardModel.getObject(renderer.object.id);
+                var objectIsStillOnBoard = boardModel.getObject(renderer.boardObject.id);
                 if (!objectIsStillOnBoard) {
                     renderer.renderDeath();
                 }

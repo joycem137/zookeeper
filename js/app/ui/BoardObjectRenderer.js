@@ -14,7 +14,7 @@ function ($) {
     };
 
     var BoardObjectRenderer = function(boardObject) {
-        this._boardObject = boardObject;
+        this.boardObject = boardObject;
         this._oldState = $.extend({}, boardObject.currentState);
     };
 
@@ -23,7 +23,7 @@ function ($) {
             var topDiv = $('<div class="boardobject"></div>');
             this._topDiv = topDiv;
 
-            topDiv.append('<img class="boardobject background" src="' + this._boardObject.image + '"/>');
+            topDiv.append('<img class="boardobject background" src="' + this.boardObject.image + '"/>');
 
             return topDiv;
         },
@@ -38,7 +38,7 @@ function ($) {
             var oldX = oldState.col * gridSize;
             var oldY = oldState.row * gridSize;
 
-            var newState = this._boardObject.currentState;
+            var newState = this.boardObject.currentState;
             var newY = newState.row * gridSize;
             var newX = newState.col * gridSize;
 
