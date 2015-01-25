@@ -12,3 +12,9 @@ head, body {
     height: 700px;
     width: 700px;
 }
+
+.boardobject {
+    height: 50px;
+    width: 50px;
+}
+

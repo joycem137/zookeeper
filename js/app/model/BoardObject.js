@@ -10,7 +10,11 @@ function (Class, Directions) {
     return Class.extend({
 		init: function(id, currentState) {
 			this.id = id;
-			this._currentState = currentState;
+			this._currentState = currentState || {
+                row: 0,
+                col: 0,
+                facing: Directions.NORTH
+            };
 		},
 	    // returns the current facing of this object
 		get currentState() {
@@ -29,6 +33,8 @@ function (Class, Directions) {
 		// the qualitative properties of this object.
 		types: [],
 		// the unique name of this type of object 
-		name: "empty"
+		name: "empty",
+
+        image: 'img/genericObject.jpg'
     });
 });
