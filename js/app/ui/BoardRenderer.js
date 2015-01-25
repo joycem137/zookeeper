@@ -17,7 +17,6 @@ function ($, BoardObjectRenderer) {
         create: function() {
             var topDiv = $('<div id="board"></div>');
             this._topDiv = topDiv;
-            topDiv.append(('<img id="boardBackground" src="img/BoardBackground.png" />'));
 
             // Add all the object renderers to the board that we started with.
             var boardObjects = this._boardModel.objects;
