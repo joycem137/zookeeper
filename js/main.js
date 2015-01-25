@@ -49,8 +49,11 @@ function($, BoardObject, BoardController, simpleAudio) {
         board.render();
 
         body.click(function() {
-            testObject.currentState.facing = testObject.currentState.facing + 90;
-            testObject.currentState.facing = testObject.currentState.facing > 360 ? 0 : testObject.currentState.facing;
+            var oldFacing = testObject.currentState.facing;
+            var newFacing = oldFacing + 90;
+
+            testObject.currentState.facing = newFacing;
+
             board.render();
         });
     });
